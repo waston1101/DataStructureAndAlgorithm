@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class ToolsForTestCase {
 
 	/**
-	 * 
+	 * 生成数组
 	 * @param max 数组中的最大数，默认值999
 	 * @param min 数组中的最小数，允许为负则默认-999，否则默认为0
 	 * @param length 数组的长度，默认16
