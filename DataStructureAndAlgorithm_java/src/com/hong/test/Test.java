@@ -12,6 +12,7 @@ public class Test {
 		
 		//ToolsForTestCase.generateRandomString(32L, false, true, true, 0);
 		
+		TestJavaColt.matTest();
 
 	}
 

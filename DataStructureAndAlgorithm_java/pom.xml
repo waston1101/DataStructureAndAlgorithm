@@ -17,4 +17,11 @@
       </plugin>
     </plugins>
   </build>
+  <dependencies>
+  <dependency>
+  	<groupId>colt</groupId>
+  	<artifactId>colt</artifactId>
+  	<version>1.2.0</version>
+  </dependency>
+  </dependencies>
 </project>
