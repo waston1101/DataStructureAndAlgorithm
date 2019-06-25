@@ -41,6 +41,43 @@ public class ToolsForTestCase {
 		return generateRandomStringMethod(length, containLetterO, containNum, containSymbol, caseCase);
 	}
 
+	/**
+	 * 获取指定长度的类型为String的List
+	 * @param length 默认值为48
+	 * @return
+	 */
+	public static List<String> generateStringList(Long length){
+		return generateStringListMethod(length);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	private static List<String> generateStringListMethod(Long length) {
+		List<String> strList = new ArrayList<>();
+		if(length == null ) {
+			length = 48L;
+		}else if(length <= 0) {
+			return null;
+		}
+		int i = 0;
+		while(i<length) {
+			strList.add(generateRandomString(48L,false,true,false,0));
+			i++;
+		}
+		return strList;
+	}
+
 	private static String generateRandomStringMethod(Long length, Boolean containLetterO, Boolean containNum,
 			Boolean containSymbol, Integer caseCase) {
 		char[] table1 = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
@@ -69,13 +106,13 @@ public class ToolsForTestCase {
 
 		if (containNum) {
 			for (char c : table2) {
-				System.out.println(c);
+				//System.out.println(c);
 				charList.add(c);
 			}
 		}
 		if (containSymbol) {
 			for (char c : table3) {
-				System.out.println(c);
+				//System.out.println(c);
 				charList.add(c);
 			}
 		}
