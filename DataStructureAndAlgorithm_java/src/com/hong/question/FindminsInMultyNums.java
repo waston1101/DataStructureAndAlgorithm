@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import com.sun.xml.internal.ws.util.StringUtils;
+
 /**
  * 在10亿个数中，找到最小的10个数
  * @author mc
@@ -27,11 +29,12 @@ public class FindminsInMultyNums {
 	 * 思路：</br>
 	 * 读取/生成一个数，放入队列尾部；<br/>
 	 * 获取队列首元素，判断大小，如果大于最小小于最大则插入到链表中，然后删除链表的最后一个数；<br/>
+	 * TODO 未完
 	 * @throws IOException 
 	 */
 	private static void goAndFind() throws Exception {
 		// 生成10亿个正整数，保存到本地文件
-		generateNumsIntoFile();
+		generateNumsIntoFile(null);
 		// 存放生成的数
 		Queue<Long> queue = new LinkedList<>();
 		// 存放临时数据，也是最终的结果
@@ -42,8 +45,12 @@ public class FindminsInMultyNums {
 	 * 生成10亿个正整数，保存到本地文件
 	 * @throws IOException 
 	 */
-	private static void generateNumsIntoFile() throws Exception {
-		Long count = 1000000000L;
+	public static void generateNumsIntoFile(Long size) throws Exception {
+		if(size == null || size == 0) {
+			size = 100000000L;
+		}
+		//Long count = 100000000L;
+		Long count = size;
 		Long index = 0L;
 		// 用File.createNewFile生成文件
 //		File xmlFile = new File("billlionNums.txt");
@@ -58,9 +65,9 @@ public class FindminsInMultyNums {
 			int a = (int) (Math.random() * 1000000);
 			fileWriter.write(String.valueOf(a));
 			fileWriter.write(separator);
-			if(index % 1000 == 0) {
+			if(index % 10000 == 0) {
 				System.out.println("index = "+index+", a = "+a);
-				Thread.sleep(1);
+				//Thread.sleep(1);
 			}
 			index++;
 		}

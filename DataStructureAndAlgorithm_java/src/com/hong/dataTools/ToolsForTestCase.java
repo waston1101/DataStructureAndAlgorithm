@@ -1,5 +1,9 @@
 package com.hong.dataTools;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -43,36 +47,46 @@ public class ToolsForTestCase {
 
 	/**
 	 * 获取指定长度的类型为String的List
+	 * 
 	 * @param length 默认值为48
 	 * @return
 	 */
-	public static List<String> generateStringList(Long length){
+	public static List<String> generateStringList(Long length) {
 		return generateStringListMethod(length);
 	}
+
+	/**
+	 * 在指定目录生成指定个数的int类型的文本文件，默认10亿，位于项目根目录
+	 * 
+	 * @param size
+	 * @param fileName
+	 * @throws Exception
+	 */
+	public static void generateNumsIntoFile(Long size, String fileName) throws Exception {
+		generateNumsIntoFileMethod(size, fileName);
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * 读取文本文件第一行数据并返回
+	 * @param fileName
+	 * @return
+	 * @throws Exception
+	 */
+//	public static String readFirstLineOfFileData( String fileName) throws Exception {
+//		return readFirstLineOfFileDataMethod(fileName);
+//	}
+
+	// ========================实现方法
 	private static List<String> generateStringListMethod(Long length) {
 		List<String> strList = new ArrayList<>();
-		if(length == null ) {
+		if (length == null) {
 			length = 48L;
-		}else if(length <= 0) {
+		} else if (length <= 0) {
 			return null;
 		}
 		int i = 0;
-		while(i<length) {
-			strList.add(generateRandomString(48L,false,true,false,0));
+		while (i < length) {
+			strList.add(generateRandomString(48L, false, true, false, 0));
 			i++;
 		}
 		return strList;
@@ -106,13 +120,13 @@ public class ToolsForTestCase {
 
 		if (containNum) {
 			for (char c : table2) {
-				//System.out.println(c);
+				// System.out.println(c);
 				charList.add(c);
 			}
 		}
 		if (containSymbol) {
 			for (char c : table3) {
-				//System.out.println(c);
+				// System.out.println(c);
 				charList.add(c);
 			}
 		}
@@ -179,6 +193,71 @@ public class ToolsForTestCase {
 //			i++;
 //		}
 		return intArray;
+	}
+
+	/**
+	 * 生成指定个正整数，保存到本地文件
+	 * 
+	 * @throws IOException
+	 */
+	private static void generateNumsIntoFileMethod(Long size, String fileName) throws Exception {
+		if (size == null || size == 0) {
+			size = 100000000L;
+		}
+		// Long count = 100000000L;
+		Long count = size;
+		Long index = 0L;
+		// 用File.createNewFile生成文件
+//		File xmlFile = new File("billlionNums.txt");
+//		xmlFile.createNewFile();//创建文本文件
+//		FileWriter fileWriter = new FileWriter(xmlFile);
+
+		// 用Filewriter来生成文件
+		// FileWriter fileWriter = new FileWriter("billlionNums.txt");//创建文本文件
+		if (fileName == null || "".equals(fileName.trim())) {
+			fileName = "billlionNums.txt";
+		}
+		FileWriter fileWriter = new FileWriter(fileName);
+
+		// 系统换行符
+		String separator = System.getProperty("line.separator");
+		while (index < count) {
+			int a = (int) (Math.random() * 1000000);
+			fileWriter.write(String.valueOf(a));
+			fileWriter.write(separator);
+			if (index % 10000 == 0) {
+				System.out.println("index = " + index + ", a = " + a);
+				// Thread.sleep(1);
+			}
+			index++;
+		}
+
+		fileWriter.flush();
+		fileWriter.close();
+	}
+
+	/**
+	 * 读取第一行数据并返回<br/>
+	 * 读取的方式有3种，参见https://blog.csdn.net/milletguo/article/details/80144290
+	 * 读取指定行参见：https://blog.csdn.net/luo_da/article/details/77866835
+	 * @param fileName
+	 * @return
+	 * @throws Exception
+	 */
+	private static String readFirstLineOfFileDataMethod(String fileName) throws Exception {
+		FileReader fr = new FileReader(fileName);
+		BufferedReader bf = new BufferedReader(fr);
+		String str;
+		// 按行读取字符串
+		// 逐行读取并保存到list中
+//		ArrayList<String> arrayList = new ArrayList<>();
+//		while ((str = bf.readLine()) != null) {
+//			arrayList.add(str);
+//		}
+		str = bf.readLine();
+		bf.close();
+		fr.close();
+		return str;
 	}
 
 }
