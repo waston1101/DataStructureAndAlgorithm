@@ -63,11 +63,15 @@ public class ToolsForTestCase {
 	 * @throws Exception
 	 */
 	public static void generateNumsIntoFile(Long size, String fileName) throws Exception {
+		Long t1 = System.currentTimeMillis();
 		generateNumsIntoFileMethod(size, fileName);
+		Long t2 = System.currentTimeMillis();
+		System.out.println("It's done, time = " + (t2 - t1) + "ms.");
 	}
-	
+
 	/**
 	 * 读取文本文件第一行数据并返回
+	 * 
 	 * @param fileName
 	 * @return
 	 * @throws Exception
@@ -225,10 +229,9 @@ public class ToolsForTestCase {
 			int a = (int) (Math.random() * 1000000);
 			fileWriter.write(String.valueOf(a));
 			fileWriter.write(separator);
-			if (index % 10000 == 0) {
-				System.out.println("index = " + index + ", a = " + a);
-				// Thread.sleep(1);
-			}
+//			if (index % 10000 == 0) {
+//				System.out.println("index = " + index + ", a = " + a);
+//			}
 			index++;
 		}
 
@@ -240,6 +243,7 @@ public class ToolsForTestCase {
 	 * 读取第一行数据并返回<br/>
 	 * 读取的方式有3种，参见https://blog.csdn.net/milletguo/article/details/80144290
 	 * 读取指定行参见：https://blog.csdn.net/luo_da/article/details/77866835
+	 * 
 	 * @param fileName
 	 * @return
 	 * @throws Exception
