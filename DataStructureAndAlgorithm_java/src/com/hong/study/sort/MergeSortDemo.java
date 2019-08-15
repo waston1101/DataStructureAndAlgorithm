@@ -1,12 +1,12 @@
 package com.hong.study.sort;
 
 /**
- * 快速排序：递归查找基准数的正确索引
+ *
  * 
  * @author mc
  *
  */
-public class QiuckSortDemo {
+public class MergeSortDemo {
 
 	public static void main(String[] args) {
 		int[] array = { 17, 5, 3,32, 7, 43, 8,  9, 4, 465, 67 };
@@ -16,9 +16,8 @@ public class QiuckSortDemo {
 			System.out.print("   " + array[c]);
 		}
 		System.out.println("----------------");
-		QiuckSort qst = new QiuckSort();
 		//qst.quickSortMethod(array);
-		qst.quickSortMethod_2(array);
+		MergeSort.mergeSort(array);
 //		System.out.println(qst.getArray());
 	}
 
